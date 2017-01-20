@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <!--Tab view-->
+    <color name="colorPrimary">#125688</color>
+    <color name="colorPrimaryDark">#6a60a9</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#c8e8ff</color>
+    <color name="colorBackground">#504c84</color>
+    <color name="borderColor">#ffffff</color>
+    <color name="textColor">#ffffff</color>
+</resources>

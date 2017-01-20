@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My History Cleaner</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Cache">Clear Cache</string>
+    <string name="Memory">Memory Boost   256 MB</string>
+    <string name="CallHistory">Call History</string>
+    <string name="Sms">SMS</string>
+    <string name="Gallery">Images</string>
+    <string name="Video">Videos</string>
+    <!--<string name=""></string>-->
+</resources>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myhistorycleaner">
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme">
+
+        <!--Activities of the application-->
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity.BaseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Activity.HomeScreenActivity"
+            android:label="History Cleaner &amp; Booster"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".Activity.FolderActivity"
+            android:label="Image Gallery"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.HomeScreenActivity">
+        </activity>
+
+        <activity
+            android:name=".Activity.FolderVideoActivity"
+            android:label="Video Gallery"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.HomeScreenActivity">
+        </activity>
+        <activity
+            android:name=".Activity.VideoActivity"
+            android:label="Videos"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.FolderVideoActivity">
+            </activity>
+        <activity
+            android:name=".Activity.GalleryActivity"
+            android:label="Images"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.FolderActivity">
+        </activity>
+        <activity
+            android:name=".Activity.ClearCacheActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.HomeScreenActivity">
+        </activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".Activity.Clear"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.ClearCacheActivity">
+        </activity>
+        <activity
+            android:name=".Activity.DisplayCallsActivity"
+            android:label="Call History"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.HomeScreenActivity">
+        </activity>
+
+        <activity
+            android:name=".Activity.DisplaySmsActivity"
+            android:label="SMS"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activity.HomeScreenActivity">
+            <intent-filter>
+
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity.ComposeSmsActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </activity>
+
+        <!-- Receivers in the application-->
+        <!-- Receiver that listens for incoming SMS messages -->
+        <receiver
+            android:name=".Receiver.SmsBroadcastReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- BroadcastReceiver that listens for incoming MMS messages -->
+        <receiver
+            android:name=".Receiver.MmsReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+
+        <!--Services of the application-->
+        <!-- Service that delivers messages from the phone "quick response" -->
+        <service
+            android:name=".Services.HeadlessSmsSendService"
+            android:exported="true"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
